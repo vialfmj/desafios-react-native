@@ -5,7 +5,8 @@ import TaskListItem from "../item"
 import CustomModal from "../../modal";
 
 
-const TaskList = ({ tasks, setTasks }) => {
+const TaskList = ({ tasks, setTasks, tasksToShow }) => {
+
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null)
 
@@ -42,11 +43,11 @@ const TaskList = ({ tasks, setTasks }) => {
     const idExtractor = (item => item.id)
 
 
-    if (!tasks) return <Text>no tasks</Text>
+    if (!tasksToShow || tasksToShow.length < 1) return <Text>no tasks</Text>
     return <>
 
         <FlatList
-            data={tasks}
+            data={tasksToShow}
             keyExtractor={idExtractor}
             renderItem={({ item }) => <TaskListItem task ={item} doneToggle={doneToggle} deleteHandler={onHandlerEvent}/>}
 

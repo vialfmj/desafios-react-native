@@ -5,6 +5,8 @@ import { theme } from "../../constants"
 const TaskInput = ({ tasks, setTasks }) => {
 
     const [text, setText] = useState('')
+
+    const generateId = () => Date.parse(new Date())
     const addTask = (activity) => {
 
         if (!activity) return
@@ -12,7 +14,7 @@ const TaskInput = ({ tasks, setTasks }) => {
         const newTask = {
             activity: activity,
             done: false,
-            id: tasks.length + 1
+            id: generateId()
         }
         setText('')
         setTasks([...tasks, newTask])
@@ -31,7 +33,6 @@ const TaskInput = ({ tasks, setTasks }) => {
                 onPress={() => addTask(text)}
                 title="add"
                 color={theme.primary}
-                accessibilityLabel="Learn more about this purple button"
             />
         </View>
     </>

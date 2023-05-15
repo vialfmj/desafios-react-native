@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     titleContainer: {
       alignItems: 'center',
       justifyContent: 'center',
-      height: '15%',
+      height: '10%',
       width: '100%',
       backgroundColor: theme.primary,
     },
@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-around',
       alignItems: 'center',
+      marginTop: 20,
       backgroundColor: '#0000FF',
       height:'10%',
       width: '100%',
