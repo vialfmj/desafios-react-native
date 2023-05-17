@@ -14,8 +14,12 @@ const styles = StyleSheet.create({
     textInput: {
         height: 40,
         width: '70%',
+        fontFamily: 'Regular',
         backgroundColor: theme.background,
         color: theme.secondary
+    },
+    button: {
+        fontFamily: 'Regular',
     }
 })
 

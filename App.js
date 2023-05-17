@@ -1,6 +1,8 @@
 
 import { useState } from 'react';
 import { Text, View } from 'react-native';
+import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
 
 import { styles } from './src/styles/styles'
 
@@ -14,9 +16,18 @@ export default function App() {
   const [tasks, setTasks] = useState([])
   const [actualScreen, setActualScreen] = useState("home")
 
+  const [loaded] = useFonts({
+    Regular: require('./assets/fonts/Montserrat-Regular.ttf'),
+    SemiBold: require('./assets/fonts/Montserrat-SemiBold.ttf'),
+  })
+
+
+
   const navbarTouchedHandler = (screen) => {
     setActualScreen(screen)
   }
+
+  if(!loaded) return <AppLoading/>
 
 
   if (actualScreen === 'home') return (

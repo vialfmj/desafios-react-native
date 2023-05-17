@@ -13,6 +13,7 @@ export const style = StyleSheet.create({
         alignItems: 'center',
     },
     title: {
+        fontFamily: 'SemiBold',
         color: theme.tertiary
     }
 })

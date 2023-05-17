@@ -19,7 +19,7 @@ export const taskListItemStyle = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: 'SemiBold',
     color: theme.secondary
   }
 });

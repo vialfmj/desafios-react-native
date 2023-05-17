@@ -30,6 +30,7 @@ const TaskInput = ({ tasks, setTasks }) => {
                 value={text}
             />
             <Button
+                style={styles.button}
                 onPress={() => addTask(text)}
                 title="add"
                 color={theme.primary}

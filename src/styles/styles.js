@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
     },
     titleText: {
       fontSize:25,
+      fontFamily: 'Regular',
       color: theme.tertiary
     },
     inputContainer: {
