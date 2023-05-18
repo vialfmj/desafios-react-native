@@ -2,7 +2,10 @@ import { Button, Text, TextInput, View } from "react-native"
 import styles from "./styles"
 import { useState } from "react"
 import { theme } from "../../constants"
-const TaskInput = ({ tasks, setTasks }) => {
+import { useTaskContext } from "../context"
+const TaskInput = () => {
+    
+    const {tasks, setTasks} = useTaskContext()
 
     const [text, setText] = useState('')
 

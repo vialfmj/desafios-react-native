@@ -1,20 +1,26 @@
 
-import { useState } from 'react';
-import { Text, View } from 'react-native';
+
+
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
-import { styles } from './src/styles/styles'
+import TaskContextProvider from './src/components/context';
 
-import TaskListContainer from './src/components/tasks/container';
-import TaskInput from './src/components/input';
-import NavBar from './src/components/navbar';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+
+import { HomeScreen, DoneScreen, NoDoneScreen } from './src/screens';
+import { theme } from './src/constants';
+
+
+
+
+
+const Stack = createNativeStackNavigator()
 
 export default function App() {
 
 
-  const [tasks, setTasks] = useState([])
-  const [actualScreen, setActualScreen] = useState("home")
 
   const [loaded] = useFonts({
     Regular: require('./assets/fonts/Montserrat-Regular.ttf'),
@@ -22,76 +28,60 @@ export default function App() {
   })
 
 
+  if (!loaded) return <AppLoading />
 
-  const navbarTouchedHandler = (screen) => {
-    setActualScreen(screen)
-  }
+  return <>
+    <TaskContextProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='Home'>
+          <Stack.Screen
+            name='Home'
+            component={HomeScreen}
+            options={{
+              title: 'TaskListApp',
+              headerStyle: {
+                backgroundColor: theme.primary,
 
-  if(!loaded) return <AppLoading/>
+              },
+              headerTintColor: theme.secondary,
+              headerTitleStyle: {
+                fontFamily: 'SemiBold'
+              },
 
+            }} />
+          <Stack.Screen 
+          name='Done' 
+          component={DoneScreen}
+          options={{
+            title: 'Done tasks',
+            headerStyle: {
+              backgroundColor: theme.primary,
+            },
+            headerTintColor: theme.secondary,
+            headerTitleStyle: {
+              fontFamily: 'SemiBold'
+            },
 
-  if (actualScreen === 'home') return (
+          }} />
+          <Stack.Screen 
+          name='No done' 
+          component={NoDoneScreen} 
+          options={{
+            title: 'Undone tasks',
+            headerStyle: {
+              backgroundColor: theme.primary,
+            },
+            headerTintColor: theme.secondary,
+            headerTitleStyle: {
+              fontFamily: 'SemiBold'
+            },
 
-    <View style={styles.container}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.titleText}>TaskListApp</Text>
-      </View>
-      <Text>{actualScreen}</Text>
-      <NavBar handler={navbarTouchedHandler} />
-      <View style={styles.inputContainer}>
-        <TaskInput
-          tasks={tasks}
-          setTasks={setTasks} />
-      </View>
-      <View style={styles.tasksListContainer}>
-        <TaskListContainer
-          tasks={tasks}
-          setTasks={setTasks}
-          filter={'none'}
-        />
-      </View>
+          }}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </TaskContextProvider>
+  </>
 
-    </View>
-  );
-
-  if (actualScreen === 'done') return (
-
-
-    <View style={styles.container}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.titleText}>TaskListApp</Text>
-      </View>
-      <Text>{actualScreen}</Text>
-      <NavBar handler={navbarTouchedHandler} />
-      <View style={styles.tasksListContainer}>
-        <TaskListContainer
-          tasks={tasks}
-          setTasks={setTasks}
-          filter={'done'}
-        />
-      </View>
-
-    </View>
-  );
-  if (actualScreen === 'no done') return (
-
-
-    <View style={styles.container}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.titleText}>TaskListApp</Text>
-      </View>
-      <Text>{actualScreen}</Text>
-      <NavBar handler={navbarTouchedHandler} />
-      <View style={styles.tasksListContainer}>
-        <TaskListContainer
-          tasks={tasks}
-          setTasks={setTasks}
-          filter={'nodone'}
-        />
-      </View>
-
-    </View>
-  );
 }
 
 
