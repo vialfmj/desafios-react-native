@@ -1,11 +1,12 @@
-import { Button, Text, TextInput, View } from "react-native"
-import styles from "./styles"
+import {  TextInput, TouchableOpacity, View } from "react-native"
+import { styles } from "./styles"
 import { useState } from "react"
 import { theme } from "../../constants"
+import { AntDesign } from '@expo/vector-icons';
 import { useTaskContext } from "../context"
 const TaskInput = () => {
-    
-    const {tasks, setTasks} = useTaskContext()
+
+    const { tasks, setTasks } = useTaskContext()
 
     const [text, setText] = useState('')
 
@@ -32,12 +33,11 @@ const TaskInput = () => {
                 placeholder={"add a task"}
                 value={text}
             />
-            <Button
-                style={styles.button}
-                onPress={() => addTask(text)}
-                title="add"
-                color={theme.primary}
-            />
+
+            <TouchableOpacity
+                onPress={() => addTask(text)}>
+                <AntDesign name="plussquare" size={40} color={theme.tertiary} />
+            </TouchableOpacity>
         </View>
     </>
 }

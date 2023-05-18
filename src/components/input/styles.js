@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { theme } from '../../constants'
 
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: "space-around",
@@ -19,8 +19,15 @@ const styles = StyleSheet.create({
         color: theme.secondary
     },
     button: {
+        backgroundColor: theme.primary,
+        height: 40,
+        width: '25%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    buttonText: {
+        fontSize: 20,
         fontFamily: 'Regular',
     }
 })
 
-export default styles

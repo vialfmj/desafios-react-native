@@ -1,8 +1,9 @@
 import { View, Text } from "react-native";
 import { styles } from "../styles/styles";
-import NavBar from "../components/navbar";
-import TaskListContainer from "../components/tasks/container";
+
 import { useTaskContext } from "../components/context";
+
+import {NavBar, TaskListContainer} from '../components'
 
 const DoneScreen = ({navigation}) => {
     const {tasks, setTasks} = useTaskContext()

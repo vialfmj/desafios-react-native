@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { theme } from '../../../constants'
-export const taskListItemStyle = StyleSheet.create({
+export const style = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: 'center',

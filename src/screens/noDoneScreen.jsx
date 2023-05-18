@@ -1,27 +1,26 @@
 
-import {View, Text} from 'react-native'
+import { View, Text } from 'react-native'
 import { styles } from '../styles/styles';
 import { useTaskContext } from '../components/context';
-import NavBar from '../components/navbar';
-import TaskListContainer from '../components/tasks/container';
+import { NavBar, TaskListContainer } from '../components'
 
 
-const NoDoneScreen = ({navigation}) => {
-    const {tasks, setTasks} = useTaskContext()
+const NoDoneScreen = ({ navigation }) => {
+  const { tasks, setTasks } = useTaskContext()
 
-    return (
-        <View style={styles.container}>
-          <NavBar navigation={navigation} />
-          <View style={styles.tasksListContainer}>
-            <TaskListContainer
-              tasks={tasks}
-              setTasks={setTasks}
-              filter={'nodone'}
-            />
-          </View>
-    
-        </View>
-      );
+  return (
+    <View style={styles.container}>
+      <NavBar navigation={navigation} />
+      <View style={styles.tasksListContainer}>
+        <TaskListContainer
+          tasks={tasks}
+          setTasks={setTasks}
+          filter={'nodone'}
+        />
+      </View>
+
+    </View>
+  );
 
 }
 

@@ -8,20 +8,8 @@ export const styles = StyleSheet.create({
       justifyContent: 'flex-start',
       height: '100%',
       width: '100%',
-      marginTop: 50,
+      marginTop: 0,
       backgroundColor: theme.background
-    },
-    titleContainer: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '10%',
-      width: '100%',
-      backgroundColor: theme.primary,
-    },
-    titleText: {
-      fontSize:25,
-      fontFamily: 'Regular',
-      color: theme.tertiary
     },
     inputContainer: {
       flexDirection: 'row',

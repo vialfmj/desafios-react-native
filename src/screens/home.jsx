@@ -1,12 +1,10 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 
 
 import { styles } from "../styles/styles";
-import NavBar from "../components/navbar";
-
-import TaskListContainer from "../components/tasks/container";
-import TaskInput from "../components/input";
 import { useTaskContext } from "../components/context";
+import { NavBar, TaskInput , TaskListContainer} from "../components";
+
 
 
 const HomeScreen = ({ navigation }) => {

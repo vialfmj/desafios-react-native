@@ -1,11 +1,13 @@
 
 import { useState } from "react";
 import { Text, FlatList } from "react-native"
-import TaskListItem from "../item"
-import CustomModal from "../../modal";
+import { CustomModal, TaskListItem } from '../../../components'
+import { useTaskContext } from "../../context";
 
 
-const TaskList = ({ tasks, setTasks, tasksToShow }) => {
+const TaskList = ({ tasksToShow }) => {
+
+    const { tasks, setTasks } = useTaskContext()
 
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null)
@@ -27,19 +29,6 @@ const TaskList = ({ tasks, setTasks, tasksToShow }) => {
         setModalVisible(!modalVisible);
     }
 
-
-    const doneToggle = (idTask) => {
-        if (!idTask) return
-        let newTasks = [...tasks]
-        newTasks.map(task => {
-            if (task.id === idTask) {
-                task.done = !task.done
-                return task
-            }
-        })
-        setTasks(newTasks)
-    }
-
     const idExtractor = (item => item.id)
 
 
@@ -49,20 +38,9 @@ const TaskList = ({ tasks, setTasks, tasksToShow }) => {
         <FlatList
             data={tasksToShow}
             keyExtractor={idExtractor}
-            renderItem={({ item }) => <TaskListItem task ={item} doneToggle={doneToggle} deleteHandler={onHandlerEvent}/>}
+            renderItem={({ item }) => <TaskListItem task={item} deleteHandler={onHandlerEvent} />}
 
         />
-
-        {/*         {
-            tasks.map(task =>
-                <TaskListItem
-                    task={task}
-                    key={task.id}
-                    doneToggle={doneToggle}
-                    deleteHandler={onHandlerEvent}
-                />
-            )
-        } */}
         <CustomModal
             isVisible={modalVisible}
             animationType='slide'
