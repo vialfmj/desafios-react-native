@@ -2,23 +2,18 @@
 
 
 import { useFonts } from 'expo-font';
-import AppLoading from 'expo-app-loading';
-import { ActivityIndicator, View } from 'react-native'
+import { Entypo } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons';
 
 import TaskContextProvider from './src/components/context';
-
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
 import { HomeScreen, DoneScreen, NoDoneScreen } from './src/screens';
 import { Loader } from './src/components';
 import { theme } from './src/constants';
 
-
-
-
-
-const Stack = createNativeStackNavigator()
+const Tab = createBottomTabNavigator();
 
 export default function App() {
 
@@ -35,51 +30,58 @@ export default function App() {
   return <>
     <TaskContextProvider>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Home'>
-          <Stack.Screen
-            name='Home'
-            component={HomeScreen}
-            options={{
-              title: 'TaskListApp',
-              headerStyle: {
-                backgroundColor: theme.primary,
-                justifyContent: 'center'
+        <Tab.Navigator initialRouteName='Home'
+          screenOptions={({ route }) => ({
 
-              },
-              headerTintColor: theme.secondary,
-              headerTitleStyle: {
-                fontFamily: 'SemiBold'
-              },
-            }} />
-          <Stack.Screen
+
+            tabBarIcon: ({focused}) => {
+              if(route.name === "Home") 
+              return focused? <Entypo name="home" size={24} color={theme.secondary} />
+              : <Entypo name="home" size={24} color={theme.backgroundSecondary} />
+
+
+
+              if(route.name === "Done")
+              return focused? <AntDesign name="checkcircle" size={24} color={theme.secondary} />
+              : <AntDesign name="checkcircle" size={24} color={theme.backgroundSecondary} />
+    
+              if(route.name === "No Done")
+              return focused? <AntDesign name="checkcircleo" size={24} color={theme.secondary} />
+              : <AntDesign name="checkcircleo" size={24} color={theme.backgroundSecondary} />
+              
+            },
+
+            headerShown: false,
+            tabBarLabelStyle: {
+              fontFamily: 'Regular',
+              fontSize: 12
+            },
+            tabBarStyle: {
+              backgroundColor: theme.background,
+              borderColor: theme.primary,
+            },
+            tabBarActiveTintColor: theme.secondary,
+            tabBarInactiveTintColor: theme.secondary,
+            tabBarIconStyle: {
+              fontSize: 22, 
+            },
+
+          })
+          }
+        >
+
+          <Tab.Screen
+            name='Home'
+            component={HomeScreen} />
+          <Tab.Screen
             name='Done'
             component={DoneScreen}
-            options={{
-              title: 'Done tasks',
-              headerStyle: {
-                backgroundColor: theme.primary,
-              },
-              headerTintColor: theme.secondary,
-              headerTitleStyle: {
-                fontFamily: 'SemiBold'
-              },
-
-            }} />
-          <Stack.Screen
-            name='No done'
+          />
+          <Tab.Screen
+            name='No Done'
             component={NoDoneScreen}
-            options={{
-              title: 'Undone tasks',
-              headerStyle: {
-                backgroundColor: theme.primary,
-              },
-              headerTintColor: theme.secondary,
-              headerTitleStyle: {
-                fontFamily: 'SemiBold'
-              },
-
-            }} />
-        </Stack.Navigator>
+          />
+        </Tab.Navigator>
       </NavigationContainer>
     </TaskContextProvider>
   </>

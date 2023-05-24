@@ -1,14 +1,15 @@
-import {  TextInput, TouchableOpacity, View } from "react-native"
+import { TextInput, TouchableOpacity, View } from "react-native"
 import { styles } from "./styles"
-import { useState } from "react"
 import { theme } from "../../constants"
 import { AntDesign } from '@expo/vector-icons';
+
+import { useTextInput } from "../hooks";
 import { useTaskContext } from "../context"
 const TaskInput = () => {
 
     const { tasks, setTasks } = useTaskContext()
 
-    const [text, setText] = useState('')
+    const { text, textHandler, cleanText, validateText } = useTextInput()
 
     const generateId = () => Date.parse(new Date())
     const addTask = (activity) => {
@@ -20,8 +21,12 @@ const TaskInput = () => {
             done: false,
             id: generateId()
         }
-        setText('')
+        cleanText()
         setTasks([...tasks, newTask])
+    }
+
+    onChangeHandler = (text) => {
+        textHandler(text)
     }
 
     return <>
@@ -29,15 +34,21 @@ const TaskInput = () => {
 
             <TextInput
                 style={styles.textInput}
-                onChangeText={text => setText(text)}
+                onChangeText={onChangeHandler}
                 placeholder={"add a task"}
                 value={text}
             />
 
-            <TouchableOpacity
-                onPress={() => addTask(text)}>
-                <AntDesign name="plussquare" size={40} color={theme.tertiary} />
-            </TouchableOpacity>
+            {
+                (text === '') ? <></>
+                    : <TouchableOpacity
+                        onPress={() => addTask(text)}>
+                        <AntDesign name="plussquare" size={40} color={theme.tertiary} />
+                    </TouchableOpacity>
+
+            }
+
+
         </View>
     </>
 }

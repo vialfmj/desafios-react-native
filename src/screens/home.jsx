@@ -12,7 +12,6 @@ const HomeScreen = ({ navigation }) => {
   return (
 
     <View style={styles.container}>
-      <NavBar navigation={navigation} />
       <View style={styles.inputContainer}>
         <TaskInput
           tasks={tasks}

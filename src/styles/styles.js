@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
       justifyContent: 'flex-start',
       height: '100%',
       width: '100%',
-      marginTop: 0,
+      marginTop: 40,
       backgroundColor: theme.background
     },
     inputContainer: {

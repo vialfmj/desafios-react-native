@@ -10,7 +10,6 @@ const NoDoneScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <NavBar navigation={navigation} />
       <View style={styles.tasksListContainer}>
         <TaskListContainer
           tasks={tasks}

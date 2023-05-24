@@ -9,7 +9,6 @@ const DoneScreen = ({navigation}) => {
     const {tasks, setTasks} = useTaskContext()
     return (
         <View style={styles.container}>
-          <NavBar navigation={navigation} />
           <View style={styles.tasksListContainer}>
             <TaskListContainer
               tasks={tasks}
